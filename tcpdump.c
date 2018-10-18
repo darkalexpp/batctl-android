@@ -27,6 +27,7 @@
 #include <sys/ioctl.h>
 #include <time.h>
 #include <sys/time.h>
+#include <sys/socket.h>
 #include <arpa/inet.h>
 #include <net/if.h>
 #include <net/if_arp.h>
@@ -36,6 +37,7 @@
 #include <netinet/udp.h>
 #include <netinet/ip_icmp.h>
 #include <netinet/if_ether.h>
+#include <linux/icmp.h>
 
 #include "main.h"
 #include "tcpdump.h"
@@ -92,8 +94,7 @@ static int print_time(void)
 static void dump_arp(unsigned char *packet_buff, ssize_t buff_len, int time_printed)
 {
 	struct ether_arp *arphdr;
-
-	LEN_CHECK((size_t)buff_len, sizeof(struct ether_arp), "ARP");
+	LEN_CHECK((size_t)buff_len, sizeof(struct ether_arp *), "ARP");
 
 	if (!time_printed)
 		print_time();

@@ -273,7 +273,7 @@ int write_file(char *dir, char *fname, char *arg1, char *arg2)
 	}
 
 	if (arg2)
-		write_len = dprintf(fd, "%s %s", arg1, arg2);
+		write_len = printf(fd, "%s %s", arg1, arg2);
 	else
 		write_len = write(fd, arg1, strlen(arg1) + 1);
 
