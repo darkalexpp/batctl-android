@@ -50,14 +50,6 @@ PREFIX = /usr/local
 SBINDIR = $(PREFIX)/sbin
 MANDIR = $(PREFIX)/share/man
 
-# try to generate revision
-REVISION= $(shell	if [ -d .git ]; then \
-				echo $$(git describe --always --dirty --match "v*" |sed 's/^v//' 2> /dev/null || echo "[unknown]"); \
-			fi)
-ifneq ($(REVISION),)
-CPPFLAGS += -DSOURCE_VERSION=\"$(REVISION)\"
-endif
-
 # default target
 all: $(BINARY_NAME)
 
