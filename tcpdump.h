@@ -23,7 +23,6 @@
 #include <netpacket/packet.h>
 #include <net/ethernet.h>
 #include "list-batman.h"
-#include "if_ether.h"
 
 #ifndef ARPHRD_IEEE80211_PRISM
 #define ARPHRD_IEEE80211_PRISM 802
@@ -108,4 +107,3 @@ struct prism_header {
 #define RADIOTAP_HEADER_LEN sizeof(struct radiotap_header)
 
 int tcpdump(int argc, char **argv);
-

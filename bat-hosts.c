@@ -20,6 +20,7 @@
  */
 
 
+
 #define _GNU_SOURCE
 #include <stdio.h>
 #include <stdint.h>
@@ -32,7 +33,6 @@
 #include "bat-hosts.h"
 #include "hash.h"
 #include "functions.h"
-//#include "if_ether.h"
 
 
 static struct hashtable_t *host_hash = NULL;
@@ -256,24 +256,3 @@ void bat_hosts_free(void)
 	if (host_hash)
 		hash_delete(host_hash, bat_host_free);
 }
-
-#include <netinet/ether.h>
-
-char *ether_ntoa(const struct ether_addr *addr);
-
-struct ether_addr *ether_aton(const char *asc);
-
-int ether_ntohost(char *hostname, const struct ether_addr *addr);
-
-int ether_hostton(const char *hostname, struct ether_addr *addr);
-
-int ether_line(const char *line, struct ether_addr *addr,
-               char *hostname);
-
-/* GNU extensions */
-
-
-char *ether_ntoa_r(const struct ether_addr *addr, char *buf);
-
-struct ether_addr *ether_aton_r(const char *asc,
-                                struct ether_addr *addr);
