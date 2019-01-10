@@ -21,7 +21,13 @@
 
 
 
-#include <netinet/if_ether.h>
+#include <sys/socket.h>
+#include <linux/if_ether.h>
+#include <linux/if_arp.h>
+#ifndef ETHER_ADDR_LEN
+#define ETHER_ADDR_LEN ETH_ALEN
+#include "ethertypes.h"
+#endif
 
 
 #define ETH_STR_LEN 17

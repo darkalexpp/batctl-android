@@ -35,7 +35,9 @@
 #include <netinet/tcp.h>
 #include <netinet/udp.h>
 #include <netinet/ip_icmp.h>
-#include <netinet/if_ether.h>
+#include <linux/icmp.h>
+//#include "if_ether.h"
+
 
 #include "main.h"
 #include "tcpdump.h"
@@ -93,7 +95,7 @@ static void dump_arp(unsigned char *packet_buff, ssize_t buff_len, int time_prin
 {
 	struct ether_arp *arphdr;
 
-	LEN_CHECK((size_t)buff_len, sizeof(struct ether_arp), "ARP");
+	LEN_CHECK((size_t)buff_len, sizeof(struct ether_arp*), "ARP");
 
 	if (!time_printed)
 		print_time();
@@ -113,7 +115,7 @@ static void dump_arp(unsigned char *packet_buff, ssize_t buff_len, int time_prin
 	default:
 		printf("ARP, unknown op code: %i\n", ntohs(arphdr->arp_op));
 		break;
-	}
+	} 
 }
 
 static void dump_ip(unsigned char *packet_buff, ssize_t buff_len, int time_printed)

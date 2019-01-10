@@ -30,6 +30,7 @@
 #include <fcntl.h>
 #include <string.h>
 #include <math.h>
+#include <netinet/ether.h>
 
 #include "main.h"
 #include "ping.h"

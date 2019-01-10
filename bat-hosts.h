@@ -25,10 +25,29 @@
 #define _BAT_HOSTS_H 1
 
 #include <netinet/ether.h>
+#include <net/ethernet.h>
 
 #define HOST_NAME_MAX_LEN 50
 #define CONF_DIR_LEN 256
 
+//char *ether_ntoa(const struct ether_addr *addr);
+
+//struct ether_addr *ether_aton(const char *asc);
+//struct ether_addr* ether_aton(const char*) __INTRODUCED_IN(11);
+
+int ether_ntohost(char *hostname, const struct ether_addr *addr);
+
+int ether_hostton(const char *hostname, struct ether_addr *addr);
+
+int ether_line(const char *line, struct ether_addr *addr,
+               char *hostname);
+
+/* GNU extensions */
+
+
+//char *ether_ntoa_r(const struct ether_addr *addr, char *buf);
+
+//struct ether_addr *ether_aton_r(const char *asc, struct ether_addr *addr);
 
 struct bat_host {
 	struct ether_addr mac_addr;

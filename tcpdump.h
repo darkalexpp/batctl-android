@@ -22,6 +22,8 @@
 
 #include <netpacket/packet.h>
 #include <net/ethernet.h>
+#include <netinet/if_ether.h>
+
 #include "list-batman.h"
 
 #ifndef ARPHRD_IEEE80211_PRISM
@@ -102,6 +104,20 @@ struct prism_header {
 	struct prism_item istx;
 	struct prism_item frmlen;
 };
+
+
+struct ether_arp {
+	struct	 arphdr ea_hdr;			/* fixed-size header */
+	u_int8_t arp_sha[ETHER_ADDR_LEN];	/* sender hardware address */
+	u_int8_t arp_spa[4];			/* sender protocol address */
+	u_int8_t arp_tha[ETHER_ADDR_LEN];	/* target hardware address */
+	u_int8_t arp_tpa[4];			/* target protocol address */
+} __packed;
+#define	arp_hrd	ea_hdr.ar_hrd
+#define	arp_pro	ea_hdr.ar_pro
+#define	arp_hln	ea_hdr.ar_hln
+#define	arp_pln	ea_hdr.ar_pln
+#define	arp_op	ea_hdr.ar_op
 
 #define PRISM_HEADER_LEN sizeof(struct prism_header)
 #define RADIOTAP_HEADER_LEN sizeof(struct radiotap_header)
